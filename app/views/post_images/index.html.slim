@@ -1,0 +1,27 @@
+section.sct-color-1.slice
+  .container-fluid.masonry-container
+    .row
+      .col-md-8.col-sm-offset-2
+        .masonry-wrapper-cols
+          .masonry-gutter
+          .masonry-block
+            .block.block-image.v1
+              .block-image
+                .view.view-first
+                  a href=""
+                    = image_tag('sample-post1.jpg')
+              .block-content
+                = image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb")
+                h3.block-title
+                  a href="#"
+                    i.fa.fa-map-marker
+                    ショップ名
+                p この画像に関する説明
+                ul.inline-meta
+                  li
+                    | By
+                    a href="#"
+                      投稿者名
+                  li 
+                    a href="#"
+                      | 23 コメント
