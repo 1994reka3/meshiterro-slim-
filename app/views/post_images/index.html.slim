@@ -24,5 +24,4 @@ section.sct-color-1.slice
                       | By
                       = post_image.user.name
                     li
-                      a href="#"
-                        | 23 コメント
+                      = link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id)
