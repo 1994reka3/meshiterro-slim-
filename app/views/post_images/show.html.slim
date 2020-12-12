@@ -1,0 +1,64 @@
+section.sct-color-1.slice
+  .container
+    .row
+      .col-md-12.post_images_container
+        .post_item
+
+          .post-meta-top
+            .post-image
+              = attachment_image_tag @post_image, :image
+          .post-content
+            h2.post-title
+              = @post_image.shop_name
+            ul.meta-info-cells.v4.float-wrapper
+              li
+                i.fa.fa-user
+                | By
+                a href="#"
+                  = @post_image.user.name
+              li
+                i.fa.fa-calendar
+                  = @post_image.created_at.strftime('%Y/%m/%d')
+              li
+                i.fa.fa-heart
+                a href="#"
+                  | 202 いいね
+              li
+                i.fa.fa-comment
+                a href="#comments"
+                  | 4
+            .post-content-inner.mt-20
+              p
+                = @post_image.caption
+
+          .comment-list.bt.style-2#comments
+            .float-wrapper
+              h2.comment-count
+                | 4件コメント
+            ol
+              li.comment
+                .comment-body.bb
+                  .comment-avatar
+                    .avatar
+                      = image_tag('sample-author1.jpg')
+                  .comment-text
+                    .comment-author.clearfix
+                      a href="#"
+                        | 投稿者名
+                      span.comment-meta
+                        span.comment-date
+                          | 2017/07/21
+                    .comment-entry
+                      | コメントがここに表示されますコメントがここに表示されますコメントがここに表示されますコメントがここに表示されますコメントがここに表示されますコメントがここに表示されますコメントがここに表示されます
+          hr
+
+          .section-title-wrapper.style-1.v1.mt-30#divAddComment
+            h3.section-title.left
+              span
+                | コメント
+          form.mt-20
+            .row
+              .col-sm-12
+                textarea.form-control rows="5" placeholder="コメントをここに"
+            .button type="submit" class="btn.btn-lg.btn-base-1.mt-20.pull-right"
+              | 送信する
