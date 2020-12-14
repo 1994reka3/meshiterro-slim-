@@ -26,4 +26,4 @@ section.sct-color-1.slice
                     li
                       = link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id)
 
-          = paginate @post_images
+          == paginate @post_images
