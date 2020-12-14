@@ -4,7 +4,7 @@ section.sct-color-1.slice
       .col-md-8.col-sm-offset-2
         .masonry-wrapper-cols
           .masonry-gutter
-          = @post_images.each do |post_image|
+          - @post_images.each do |post_image|
             .masonry-block
               .block.block-image.v1
                 .block-image
@@ -25,3 +25,5 @@ section.sct-color-1.slice
                       = post_image.user.name
                     li
                       = link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id)
+
+          = paginate @post_images
