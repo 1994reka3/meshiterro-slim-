@@ -9,13 +9,13 @@ section.slice.sct-color-1
               h3.section-title.section-title-sm.left
                 span
                   | 画像投稿フォーム
-            
+
             /フォーム部分
             = form_for(@post_image, url: post_images_path) do |f|
               - if @post_image.errors.any?
                 #error_explanation
                   h2
-                    = @post_image.errors.conut
+                    = @post_image.errors.count
                     | 件のエラーが発生しました。
                   ul
                   - @post_image.errors.full_messages.each do |message|
