@@ -1,3 +1,8 @@
+.profile-container
+  h3.profile-name
+    = @user.name
+  = image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb", style: "width: 100px; height: 100px; margin-top: 20px;")
+
 section.sct-color-1.slice
   .container-fluid.masonry-container
     .row
