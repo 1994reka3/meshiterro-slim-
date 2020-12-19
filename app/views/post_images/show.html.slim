@@ -1,0 +1,83 @@
+section.sct-color-1.slice
+  .container
+    .row
+      .col-md-12.post_images_container
+        .post_item
+
+          .post-meta-top
+            .post-image
+              = attachment_image_tag @post_image, :image
+          .post-content
+            h2.post-title
+              = @post_image.shop_name
+            ul.meta-info-cells.v4.float-wrapper
+              li
+                i.fa.fa-user
+                | By
+                a href="#"
+                  = @post_image.user.name
+              li
+                i.fa.fa-calendar
+                  = @post_image.created_at.strftime('%Y/%m/%d')
+              - if @post_image.favorited_by?(current_user)
+                li
+                  = link_to post_image_favorites_path(@post_image), method: :delete do
+                    i.fa.fa-heart aria-hidden="true" style="color: red;"
+                    = @post_image.favorites.count
+                    | いいね
+              - else
+                li
+                  = link_to post_image_favorites_path(@post_image), method: :post do
+                    i.fa.fa-heart-o aria-hidden="true"
+                    = @post_image.favorites.count
+                    | いいね
+
+              li
+                i.fa.fa-comment
+                a href="#comments"
+                  = @post_image.post_comments.count
+              li
+                - if @post_image.user == current_user
+                  = link_to "削除", post_image_path(@post_image), method: :delete
+            .post-content-inner.mt-20
+              p
+                = @post_image.caption
+
+          .comment-list.bt.style-2#comments
+            .float-wrapper
+              h2.comment-count
+                = @post_image.post_comments.count
+                | 件コメント
+            ol
+              - @post_image.post_comments.each do |post_comment|
+                li.comment
+                  .comment-body.bb
+                    .comment-avatar
+                      .avatar
+                        = attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"
+                    .comment-text
+                      .comment-author.clearfix
+                        a href="#" class="link-author"
+                          = post_comment.user.name
+                        span.comment-meta
+                          span.comment-date
+                            = post_comment.created_at.strftime('%Y/%m/%d')
+                      .comment-entry
+                        = post_comment.comment
+                      - if post_comment.user == current_user
+                        div
+                          = link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, class: "btn btn-danger pull-right"
+
+          hr
+
+          .section-title-wrapper.style-1.v1.mt-30#divAddComment
+            h3.section-title.left
+              span
+                | コメント
+
+          = form_for [@post_image, @post_comment] do |f|
+            .row
+              .col-sm-12
+                = f.text_area :comment, rows:'5', class: "form-control", placeholder: "コメントをここに"
+            = f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right"
+
